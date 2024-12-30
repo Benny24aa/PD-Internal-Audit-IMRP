@@ -10,7 +10,6 @@ PD_Roster_Full  <- PD_Roster_Full  %>%
   mutate(Source = gsub("_","/", Source)) %>% 
   mutate(Faction = "SAPD")
 
-PD_Roster_Full$Source <- as.Date(PD_Roster_Full$Source)
 PD_Roster_Full$Source <- dmy(PD_Roster_Full$Source)
 
 PD_Roster_Full_Cleaned <- PD_Roster_Full %>% 
@@ -57,3 +56,4 @@ PD_Roster_Full_Cleaned <- PD_Roster_Full_Cleaned |>
   select(-Activity_Bare_Minimum)|>
   select(-Activity_Well)|>
   select(-Activity_Great)
+
