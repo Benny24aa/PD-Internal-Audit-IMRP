@@ -98,6 +98,8 @@ Rank_Member_Count <- PD_Roster_Full_Rank_Cleaned %>%
   group_by(source, rank) %>% 
   summarise(count=n(), .groups = 'drop')
 
+### Activity type data prep for graphs
+
 Activity_Count <- PD_Roster_Full_Rank_Cleaned %>% 
   select(source, Activity_Type) %>% 
   group_by(source, Activity_Type) %>% 
@@ -130,6 +132,8 @@ bar_graph_theme <- theme(axis.title = element_text(colour="#3A3776", family = "s
                       axis.line.y = element_line(colour="black"),
                       plot.margin = margin(.5,1,.5,.5, "cm"))
 
+###### Figure 1
+
 full_member_graph <- SAPD_Total_Members %>% 
   ggplot(aes(x = source, y = count, group = faction, color=faction)) +
   geom_line(linewidth = 1.5) +
@@ -140,6 +144,29 @@ full_member_graph <- SAPD_Total_Members %>%
   labs(x = "Date of Roster",
        y = "Number of Members") +
   line_graph_theme
+
+
+###### Figure 2 Data Prep and Graph
+
+member_count_tier <- PD_Roster_Full_Rank_Cleaned %>% 
+  select(source, tier) %>% 
+  group_by(source, tier) %>% 
+  summarise(count=n(), .groups = 'drop')
+
+member_count_tier_graph <- member_count_tier %>% 
+  ggplot(aes(x = source, y = count, group = tier, color= tier)) +
+  geom_line(linewidth = 1.5) +
+  geom_point(size = 2.5)+
+  scale_y_continuous(breaks = scales::pretty_breaks(n = 11),  # y-axis breaks
+                     limits = c(0, 200),  # Set y-axis limits
+                     expand = c(0, 0)) +
+  labs(x = "Date of Roster",
+       y = "Number of Members") +
+  line_graph_theme
+
+
+
+##### Figure 3 Data Prep and Graph
 
 activity_graph <- Activity_Count %>% 
   ggplot(aes(x = source, y = count, group = Activity_Type, color=Activity_Type)) +
@@ -154,7 +181,7 @@ activity_graph <- Activity_Count %>%
 
 
 ggsave("test.png",
-       plot = activity_graph,
+       plot = member_count_tier_graph,
        height = 7.5,
        width = 18,
        dpi = 300)
