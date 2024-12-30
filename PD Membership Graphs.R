@@ -7,4 +7,8 @@ PD_Roster_Full  <- PD_Roster_Full  %>%
   rename("Source" = id) %>%
   mutate(Source = gsub("C:/Users/benny/Documents/My Resps/PD-Internal-Audit-IMRP/PD Rosters/PD Roster ","", Source)) %>%
   mutate(Source = gsub(".xlsx","", Source)) %>%
-  mutate(Source = gsub("_","/", Source))
+  mutate(Source = gsub("_","/", Source)) %>% 
+  mutate(Faction = "SAPD")
+
+PD_Roster_Full$Source <- as.Date(PD_Roster_Full$Source)
+PD_Roster_Full$Source <- dmy(PD_Roster_Full$Source)
