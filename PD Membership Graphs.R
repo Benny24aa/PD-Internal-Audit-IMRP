@@ -79,3 +79,4 @@ SAPD_Total_Members_Activity_Type_Tier <- PD_Roster_Full_Cleaned %>%
   group_by(source,faction, Activity_Type, tier) %>% 
   summarise(count=n(), .groups = 'drop') 
 
+SAPD_Tier_Activity_Complete <- bind_rows(SAPD_Total_Members_Activity_Type_All, SAPD_Total_Members_Activity_Type_Tier)
