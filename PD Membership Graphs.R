@@ -67,6 +67,8 @@ SAPD_Total_Members <- PD_Roster_Full_Cleaned %>%
 
 ### Total number of SAPD members by activity type group
 
+
+### Total for activity type for Tier Dataset
 SAPD_Total_Members_Activity_Type_All <- PD_Roster_Full_Cleaned %>% 
   select(source, faction, Activity_Type) %>% 
   group_by(source,faction, Activity_Type) %>% 
@@ -74,9 +76,25 @@ SAPD_Total_Members_Activity_Type_All <- PD_Roster_Full_Cleaned %>%
   mutate(tier = "All") %>% 
   select(source, faction, Activity_Type, tier, count)
 
+### Total for activity type based on Tier for Tier Dataset
 SAPD_Total_Members_Activity_Type_Tier <- PD_Roster_Full_Cleaned %>% 
   select(source, faction, Activity_Type, tier) %>% 
   group_by(source,faction, Activity_Type, tier) %>% 
   summarise(count=n(), .groups = 'drop') 
 
 SAPD_Tier_Activity_Complete <- bind_rows(SAPD_Total_Members_Activity_Type_All, SAPD_Total_Members_Activity_Type_Tier)
+
+rm(SAPD_Total_Members_Activity_Type_All, SAPD_Total_Members_Activity_Type_Tier)
+
+### Count of number of members by rank on X day 
+
+### This fixes rare case where Roster Displays l and i as similar, and allocates rank correctly to right group now.
+
+PD_Roster_Full_Rank_Cleaned <- PD_Roster_Full_Cleaned %>% 
+  mutate(rank = gsub("l", "I", rank))
+
+Rank_Member_Count <- PD_Roster_Full_Rank_Cleaned %>% 
+  select(source, rank) %>% 
+  group_by(source, rank) %>% 
+  summarise(count=n(), .groups = 'drop')
+
