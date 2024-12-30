@@ -21,3 +21,21 @@ Contact: [Bennyy](mailto:harleyb101010@gmail.com)
 ## Background
 
 This is the IMRP's activity report which is based on faction rosters across the entire community. This report is generic and can be used for every faction.
+
+## Figure 1: Number of members in SAPD
+
+This is total number of members in SAPD based on roster date
+
+```{r graph_user, ft.align="left", fig.width=7, fig.height=4}
+full_member_graph
+```
+
+
+
+## Figure 2: Number of members by tier
+
+This is total number of members by tier in SAPD based on roster date
+
+```{r graph_2, ft.align="left", fig.width=7, fig.height=4}
+member_count_tier_graph
+```
