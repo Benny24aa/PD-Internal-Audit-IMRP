@@ -1,0 +1,23 @@
+---
+title: "Excellence in Care - Submission Report"
+fontsize: 20
+output:
+  word_document:
+    reference_docx: "phs-offstats-summary.docx"
+    fig_caption: no
+
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(echo = FALSE, dpi = 300)
+
+```
+
+
+<Div custom-style = "Publication subtitle">  </Div>
+Extract date: `r format(Sys.Date(), '%d %B %Y')`    
+Contact: [Bennyy](mailto:harleyb101010@gmail.com)   
+
+## Background
+
+This is the IMRP's activity report which is based on faction rosters across the entire community. This report is generic and can be used for every faction.
