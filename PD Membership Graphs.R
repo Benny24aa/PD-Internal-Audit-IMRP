@@ -21,3 +21,6 @@ rm(PD_Roster_Full) ### Removes roster full
 
 PD_Roster_Full_Cleaned <- PD_Roster_Full_Cleaned |> 
   mutate(Name = gsub("  🔒","", Name)) 
+
+PD_Roster_Full_Cleaned_T <- PD_Roster_Full_Cleaned %>% 
+  mutate(Rank = str_replace(Rank, "^\\S* ", ""))
