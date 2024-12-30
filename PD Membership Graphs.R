@@ -16,3 +16,8 @@ PD_Roster_Full$Source <- dmy(PD_Roster_Full$Source)
 PD_Roster_Full_Cleaned <- PD_Roster_Full %>% 
   filter(!is.na(Rank)) %>% 
   filter(Name != "Name")
+
+rm(PD_Roster_Full) ### Removes roster full
+
+PD_Roster_Full_Cleaned <- PD_Roster_Full_Cleaned |> 
+  mutate(Name = gsub("  🔒","", Name)) 
