@@ -98,6 +98,11 @@ Rank_Member_Count <- PD_Roster_Full_Rank_Cleaned %>%
   group_by(source, rank) %>% 
   summarise(count=n(), .groups = 'drop')
 
+Activity_Count <- PD_Roster_Full_Rank_Cleaned %>% 
+  select(source, Activity_Type) %>% 
+  group_by(source, Activity_Type) %>% 
+  summarise(count=n(), .groups = 'drop')
+
 
 #### Markdown Prep for Graphs
 
@@ -125,3 +130,31 @@ bar_graph_theme <- theme(axis.title = element_text(colour="#3A3776", family = "s
                       axis.line.y = element_line(colour="black"),
                       plot.margin = margin(.5,1,.5,.5, "cm"))
 
+full_member_graph <- SAPD_Total_Members %>% 
+  ggplot(aes(x = source, y = count, group = faction, color=faction)) +
+  geom_line(linewidth = 1.5) +
+  geom_point(size = 2.5)+
+  scale_y_continuous(breaks = scales::pretty_breaks(n = 11),  # y-axis breaks
+                     limits = c(0, 300),  # Set y-axis limits
+                     expand = c(0, 0)) +
+  labs(x = "Date of Roster",
+       y = "Number of Members") +
+  line_graph_theme
+
+activity_graph <- Activity_Count %>% 
+  ggplot(aes(x = source, y = count, group = Activity_Type, color=Activity_Type)) +
+  geom_line(linewidth = 1.5) +
+  geom_point(size = 2.5)+
+  scale_y_continuous(breaks = scales::pretty_breaks(n = 11),  # y-axis breaks
+                     limits = c(0, 300),  # Set y-axis limits
+                     expand = c(0, 0)) +
+  labs(x = "Date of Roster",
+       y = "Number of Members") +
+  line_graph_theme
+
+
+ggsave("test.png",
+       plot = activity_graph,
+       height = 7.5,
+       width = 18,
+       dpi = 300)
