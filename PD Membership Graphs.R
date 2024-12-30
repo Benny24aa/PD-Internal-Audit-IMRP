@@ -12,3 +12,7 @@ PD_Roster_Full  <- PD_Roster_Full  %>%
 
 PD_Roster_Full$Source <- as.Date(PD_Roster_Full$Source)
 PD_Roster_Full$Source <- dmy(PD_Roster_Full$Source)
+
+PD_Roster_Full_Cleaned <- PD_Roster_Full %>% 
+  filter(!is.na(Rank)) %>% 
+  filter(Name != "Name")
