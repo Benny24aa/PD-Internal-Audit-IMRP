@@ -22,5 +22,12 @@ rm(PD_Roster_Full) ### Removes roster full
 PD_Roster_Full_Cleaned <- PD_Roster_Full_Cleaned |> 
   mutate(Name = gsub("  🔒","", Name)) 
 
-PD_Roster_Full_Cleaned_T <- PD_Roster_Full_Cleaned %>% 
+PD_Roster_Full_Cleaned <- PD_Roster_Full_Cleaned %>% 
   mutate(Rank = str_replace(Rank, "^\\S* ", ""))
+
+PD_Roster_Full_Cleaned <- PD_Roster_Full_Cleaned %>% 
+  clean_names() %>% 
+  mutate(playtime_2_weeks = gsub("hours","",playtime_2_weeks))|> 
+  mutate(playtime_2_weeks = gsub(" ","",playtime_2_weeks))
+
+  
