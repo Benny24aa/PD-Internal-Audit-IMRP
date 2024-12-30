@@ -57,3 +57,25 @@ PD_Roster_Full_Cleaned <- PD_Roster_Full_Cleaned |>
   select(-Activity_Well)|>
   select(-Activity_Great)
 
+
+### Total number of SAPD members
+
+SAPD_Total_Members <- PD_Roster_Full_Cleaned %>%
+  select(source, faction) %>% 
+  group_by(source, faction) %>%
+  summarise(count=n(), .groups = 'drop')
+
+### Total number of SAPD members by activity type group
+
+SAPD_Total_Members_Activity_Type_All <- PD_Roster_Full_Cleaned %>% 
+  select(source, faction, Activity_Type) %>% 
+  group_by(source,faction, Activity_Type) %>% 
+  summarise(count=n(), .groups = 'drop') %>% 
+  mutate(tier = "All") %>% 
+  select(source, faction, Activity_Type, tier, count)
+
+SAPD_Total_Members_Activity_Type_Tier <- PD_Roster_Full_Cleaned %>% 
+  select(source, faction, Activity_Type, tier) %>% 
+  group_by(source,faction, Activity_Type, tier) %>% 
+  summarise(count=n(), .groups = 'drop') 
+
