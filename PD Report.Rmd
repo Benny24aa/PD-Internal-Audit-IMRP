@@ -41,6 +41,6 @@ member_count_tier_graph
 
 ## Table 1: Number of members by tier based on `r format(Sys.Date(), '%d %B %Y')` staff roster
 ```{r table_0, ft.align="left"}
-Faction_Roster_List_Tier0_Table
+Tier_List_Output
 
 ```
