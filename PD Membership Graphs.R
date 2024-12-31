@@ -164,6 +164,36 @@ member_count_tier_graph <- member_count_tier %>%
        y = "Number of Members") +
   line_graph_theme
 
+######################## Current Dataset
+
+##### Today's dateset
+
+member_count_table_prep <- member_count_tier %>% 
+  dplyr::filter(member_count_tier$source==(Sys.Date())) %>% 
+  select(-source)
+
+library("flextable")
+library("ggplot2")
+library(plotly)
+# Set up some formatting for flextable to be applied to most tables
+flextable_format <- function(data) {
+  data %>%
+    flextable() |>
+    bold(part = "header") %>%
+    bg(bg = "steelblue", part = "header") %>%
+    color(color = "white", part = "header") %>%
+    align(align = "left", part = "header") %>%
+    valign(valign = "center", part = "header") %>%
+    valign(valign = "top", part = "body") %>%
+    colformat_num(big.mark = ",") %>%
+    fontsize(size = 12, part = "all") %>%
+    font(fontname = "Arial", part = "all") %>%
+    border(border = fp_border_default(color = "#000000", width = 0.5), part = "all") |>
+    autofit()
+}
+
+Tier_List_Output <- member_count_table_prep %>% 
+  flextable_format()
 
 
 ##### Figure 3 Data Prep and Graph
