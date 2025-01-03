@@ -3,7 +3,6 @@ title: "SAPD Faction Report"
 fontsize: 20
 output:
   word_document:
-    reference_docx: ""
     fig_caption: no
 
 ---
@@ -30,7 +29,6 @@ This is total number of members in SAPD based on roster date
 full_member_graph
 ```
 
-
 ## Figure 2: Number of members by tier
 
 This is total number of members by tier in SAPD based on roster date
@@ -40,7 +38,7 @@ member_count_tier_graph
 ```
 
 ## Table 1: Number of members by tier based on `r format(Sys.Date(), '%d %B %Y')` staff roster
-```{r table_0, ft.align="left"}
+```{r table_tier, ft.align="left", fig.width=7, fig.height=4}
 Tier_List_Output
 
 ```

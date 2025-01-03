@@ -215,3 +215,6 @@ ggsave("test.png",
        height = 7.5,
        width = 18,
        dpi = 300)
+
+rmarkdown::render(
+  "PD Report.Rmd")
