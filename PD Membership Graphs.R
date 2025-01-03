@@ -133,6 +133,14 @@ Activity_Count_Tier_3 <- PD_Roster_Full_Rank_Cleaned %>%
   group_by(source, Activity_Type) %>% 
   summarise(count=n(), .groups = 'drop')
 
+Activity_Count_Inactive_Tier_Breakdown <- PD_Roster_Full_Rank_Cleaned %>% 
+  select(source, Activity_Type, tier) %>% 
+  filter(Activity_Type == "Inactive") %>% 
+  select(-Activity_Type) %>% 
+  group_by(source, tier) %>% 
+  summarise(count=n(), .groups ='drop')
+
+
 
 #### Markdown Prep for Graphs
 
@@ -239,6 +247,60 @@ activity_graph <- Activity_Count %>%
        y = "Number of Members") +
   line_graph_theme
 
+activity_graph_tier_0 <- Activity_Count_Tier_0 %>% 
+  ggplot(aes(x = source, y = count, group = Activity_Type, color=Activity_Type)) +
+  geom_line(linewidth = 1.5) +
+  geom_point(size = 2.5)+
+  scale_y_continuous(breaks = scales::pretty_breaks(n = 11),  # y-axis breaks
+                     limits = c(0, 6),  # Set y-axis limits
+                     expand = c(0, 0)) +
+  labs(x = "Date of Roster",
+       y = "Number of Members") +
+  line_graph_theme
+
+activity_graph_tier_1 <- Activity_Count_Tier_1 %>% 
+  ggplot(aes(x = source, y = count, group = Activity_Type, color=Activity_Type)) +
+  geom_line(linewidth = 1.5) +
+  geom_point(size = 2.5)+
+  scale_y_continuous(breaks = scales::pretty_breaks(n = 11),  # y-axis breaks
+                     limits = c(0, 12),  # Set y-axis limits
+                     expand = c(0, 0)) +
+  labs(x = "Date of Roster",
+       y = "Number of Members") +
+  line_graph_theme
+
+activity_graph_tier_2 <- Activity_Count_Tier_2 %>% 
+  ggplot(aes(x = source, y = count, group = Activity_Type, color=Activity_Type)) +
+  geom_line(linewidth = 1.5) +
+  geom_point(size = 2.5)+
+  scale_y_continuous(breaks = scales::pretty_breaks(n = 11),  # y-axis breaks
+                     limits = c(0, 80),  # Set y-axis limits
+                     expand = c(0, 0)) +
+  labs(x = "Date of Roster",
+       y = "Number of Members") +
+  line_graph_theme
+
+activity_graph_tier_3 <- Activity_Count_Tier_3 %>% 
+  ggplot(aes(x = source, y = count, group = Activity_Type, color=Activity_Type)) +
+  geom_line(linewidth = 1.5) +
+  geom_point(size = 2.5)+
+  scale_y_continuous(breaks = scales::pretty_breaks(n = 11),  # y-axis breaks
+                     limits = c(0, 100),  # Set y-axis limits
+                     expand = c(0, 0)) +
+  labs(x = "Date of Roster",
+       y = "Number of Members") +
+  line_graph_theme
+
+inactive_graph <- Activity_Count_Inactive_Tier_Breakdown %>% 
+  ggplot(aes(x = source, y = count, group = tier, color=tier)) +
+  geom_line(linewidth = 1.5) +
+  geom_point(size = 2.5)+
+  scale_y_continuous(breaks = scales::pretty_breaks(n = 11),  # y-axis breaks
+                     limits = c(0, 100),  # Set y-axis limits
+                     expand = c(0, 0)) +
+  labs(x = "Date of Roster",
+       y = "Number of Members") +
+  line_graph_theme
 
 ggsave("test.png",
        plot = member_count_tier_graph,
