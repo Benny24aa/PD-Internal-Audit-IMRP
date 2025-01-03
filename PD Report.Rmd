@@ -52,7 +52,37 @@ activity_graph
 
 ## Figure 4: Tier 0 Breakdown based on activity
 
-```{r graph_activity, ft.align="center", fig.width=7, fig.height=4}
+```{r graph_activity_tier0, ft.align="center", fig.width=7, fig.height=4}
+
+activity_graph_tier_0
+```
 
 
+## Figure 4: Tier 1 Breakdown based on activity
+
+```{r graph_activity_tier1, ft.align="center", fig.width=7, fig.height=4}
+
+activity_graph_tier_1
+```
+
+## Figure 5: Tier 2 Breakdown based on activity
+
+```{r graph_activity_tier2, ft.align="center", fig.width=7, fig.height=4}
+
+activity_graph_tier_2
+```
+
+
+## Figure 6: Tier 3 Breakdown based on activity
+
+```{r graph_activity_tier3, ft.align="center", fig.width=7, fig.height=4}
+
+activity_graph_tier_3
+```
+
+## Figure 7: Inactives Breakdown based on tier
+
+```{r inactive_graph, ft.align="center", fig.width=7, fig.height=4}
+
+inactive_graph
 ```
