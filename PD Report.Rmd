@@ -38,7 +38,21 @@ member_count_tier_graph
 ```
 
 ## Table 1: Number of members by tier based on `r format(Sys.Date(), '%d %B %Y')` staff roster
-```{r table_tier, ft.align="left", fig.width=7, fig.height=4}
+```{r table_tier, ft.align="center", fig.width=7, fig.height=4}
 Tier_List_Output
+
+```
+
+## Figure 3: Number of members by activity critera
+
+```{r graph_activity, ft.align="center", fig.width=7, fig.height=4}
+activity_graph
+
+```
+
+## Figure 4: Tier 0 Breakdown based on activity
+
+```{r graph_activity, ft.align="center", fig.width=7, fig.height=4}
+
 
 ```
