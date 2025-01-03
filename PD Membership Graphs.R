@@ -105,6 +105,34 @@ Activity_Count <- PD_Roster_Full_Rank_Cleaned %>%
   group_by(source, Activity_Type) %>% 
   summarise(count=n(), .groups = 'drop')
 
+Activity_Count_Tier_0 <- PD_Roster_Full_Rank_Cleaned %>% 
+  select(source, Activity_Type, tier) %>% 
+  filter(tier == "Tier 0") %>% 
+  select(-tier) %>% 
+  group_by(source, Activity_Type) %>% 
+  summarise(count=n(), .groups = 'drop')
+
+Activity_Count_Tier_1 <- PD_Roster_Full_Rank_Cleaned %>% 
+  select(source, Activity_Type, tier) %>% 
+  filter(tier == "Tier 1") %>% 
+  select(-tier) %>% 
+  group_by(source, Activity_Type) %>% 
+  summarise(count=n(), .groups = 'drop')
+
+Activity_Count_Tier_2 <- PD_Roster_Full_Rank_Cleaned %>% 
+  select(source, Activity_Type, tier) %>% 
+  filter(tier == "Tier 2") %>% 
+  select(-tier) %>% 
+  group_by(source, Activity_Type) %>% 
+  summarise(count=n(), .groups = 'drop')
+
+Activity_Count_Tier_3 <- PD_Roster_Full_Rank_Cleaned %>% 
+  select(source, Activity_Type, tier) %>% 
+  filter(tier == "Tier 3") %>% 
+  select(-tier) %>% 
+  group_by(source, Activity_Type) %>% 
+  summarise(count=n(), .groups = 'drop')
+
 
 #### Markdown Prep for Graphs
 
@@ -170,7 +198,9 @@ member_count_tier_graph <- member_count_tier %>%
 
 member_count_table_prep <- member_count_tier %>% 
   dplyr::filter(member_count_tier$source==(Sys.Date())) %>% 
-  select(-source)
+  select(-source) %>% 
+  rename(Tier = tier) %>% 
+  rename('Number of Members' = count)
 
 library("flextable")
 library("ggplot2")
