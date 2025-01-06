@@ -110,3 +110,16 @@ very_good_graph
 ```
 
 ## Figure 11: Total Number of Hours played (All Members)
+
+```{r hours_graph, ft.align="center", fig.width=7, fig.height=4}
+
+total_hours_graph
+```
+
+## Figure 12: Member Count to Hour Ratio Graph (All Members)
+
+```{r ratio_hours_member_graph, ft.align="center", fig.width=7, fig.height=4}
+
+member_hour_ratio_graph
+```
+
