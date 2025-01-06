@@ -86,3 +86,25 @@ activity_graph_tier_3
 
 inactive_graph
 ```
+
+## Figure 8: Member Count of those who need improvement based on activity and tier
+
+```{r need_improve_graph, ft.align="center", fig.width=7, fig.height=4}
+
+needs_improvement_graph
+```
+
+## Figure 9: Member Count of those who have good activity based on tier
+
+```{r goody_graph, ft.align="center", fig.width=7, fig.height=4}
+
+good_graph
+```
+
+
+## Figure 10: Member Count of those who have very good activity based on tier
+
+```{r very_goody_graph, ft.align="center", fig.width=7, fig.height=4}
+
+very_good_graph
+```
