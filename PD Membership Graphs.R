@@ -355,6 +355,17 @@ very_good_graph <- Activity_Count_Very_Good_Breakdown %>%
        y = "Number of Members") +
   line_graph_theme
 
+SAPD_Total_Hours <- PD_Roster_Full_Rank_Cleaned %>% 
+  select(source, faction, playtime_2_weeks) %>% 
+  group_by(source, faction) %>% 
+  summarise(Total_Hours = sum(playtime_2_weeks), .groups = 'drop')
+
+##### Joining Total Hours and Total Members for Ratio
+
+hour_player_ratio <- full_join(SAPD_Total_Hours, SAPD_Total_Members, by = c("source", "faction")) %>% 
+  mutate(Hour_Member_Ratio = count/Total_Hours) %>% 
+  select(source, Hour_Member_Ratio)
+
 ggsave("test.png",
        plot = member_count_tier_graph,
        height = 7.5,
