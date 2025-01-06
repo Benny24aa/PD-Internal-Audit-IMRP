@@ -108,3 +108,5 @@ good_graph
 
 very_good_graph
 ```
+
+## Figure 11: Total Number of Hours played (All Members)

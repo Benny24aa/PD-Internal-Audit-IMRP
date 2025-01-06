@@ -355,16 +355,39 @@ very_good_graph <- Activity_Count_Very_Good_Breakdown %>%
        y = "Number of Members") +
   line_graph_theme
 
+
 SAPD_Total_Hours <- PD_Roster_Full_Rank_Cleaned %>% 
   select(source, faction, playtime_2_weeks) %>% 
   group_by(source, faction) %>% 
   summarise(Total_Hours = sum(playtime_2_weeks), .groups = 'drop')
 
+total_hours_graph <- SAPD_Total_Hours %>% 
+  ggplot(aes(x = source, y = Total_Hours, group = faction, color= faction)) +
+  geom_line(linewidth = 1.5) +
+  geom_point(size = 2.5)+
+  scale_y_continuous(breaks = scales::pretty_breaks(n = 11),  # y-axis breaks
+                     limits = c(1700, 2400),  # Set y-axis limits
+                     expand = c(0, 0)) +
+  labs(x = "Date of Roster",
+       y = "Number of Hours") +
+  line_graph_theme
+
 ##### Joining Total Hours and Total Members for Ratio
 
 hour_player_ratio <- full_join(SAPD_Total_Hours, SAPD_Total_Members, by = c("source", "faction")) %>% 
   mutate(Hour_Member_Ratio = count/Total_Hours) %>% 
-  select(source, Hour_Member_Ratio)
+  select(source, faction, Hour_Member_Ratio)
+
+member_hour_ratio_graph <- hour_player_ratio %>% 
+  ggplot(aes(x = source, y = Hour_Member_Ratio, group = faction, color= faction)) +
+  geom_line(linewidth = 1.5) +
+  geom_point(size = 2.5)+
+  scale_y_continuous(breaks = scales::pretty_breaks(n = 11),  # y-axis breaks
+                     limits = c(0.085, 0.115),  # Set y-axis limits
+                     expand = c(0, 0)) +
+  labs(x = "Date of Roster",
+       y = "Hours to Members Ratio") +
+  line_graph_theme
 
 ggsave("test.png",
        plot = member_count_tier_graph,
